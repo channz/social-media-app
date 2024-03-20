@@ -15,6 +15,7 @@ function Layout(props: Props) {
   return (
     <div className="w-full container h-dvh bg-white overflow-auto flex">
       <LeftBar />
+    <div className="w-full h-dvh bg-white overflow-auto flex flex-col">
       <div
         className={cn(
           "container grow py-4 px-8 flex flex-col",
