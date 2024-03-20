@@ -1,8 +1,13 @@
 import Layout from "@/components/layout";
-import React from "react";
 
 const Homepage = () => {
-  return <Layout></Layout>;
+  return (
+    <Layout>
+      <div className="flex flex-col">
+        <span>Homepage</span>
+      </div>
+    </Layout>
+  );
 };
 
 export default Homepage;

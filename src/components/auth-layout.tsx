@@ -1,7 +1,5 @@
 import { cn } from "@/lib/utils";
 import { ReactNode } from "react";
-import LeftBar from "./left-bar";
-import RightBar from "./right-bar";
 
 interface Props {
   children: ReactNode;
@@ -9,24 +7,25 @@ interface Props {
   centerX?: boolean;
 }
 
-function Layout(props: Props) {
+function AuthLayout(props: Props) {
   const { children, centerX, centerY } = props;
 
   return (
-    <div className="w-full container h-dvh bg-white overflow-auto flex">
-      <LeftBar />
+    <div className="w-full h-dvh bg-white overflow-auto flex">
+      <div className="flex flex-col mx-32 w-1/2 justify-center items-center">
+        <img src="/src/assets/logo_tera_black_large.png" alt="tera" />
+      </div>
       <div
         className={cn(
-          "container grow py-4 px-8 flex flex-col",
+          "grow py-4 px-8 flex flex-col",
           centerX && "items-center",
           centerY && "justify-center"
         )}
       >
         {children}
       </div>
-      <RightBar />
     </div>
   );
 }
 
-export default Layout;
+export default AuthLayout;
