@@ -5,26 +5,26 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { deleteComment } from "@/utils/apis/comment/api";
+// import { deleteComment } from "@/utils/apis/comment/api";
 import { useToken } from "@/utils/contexts/token";
 import { Ellipsis } from "lucide-react";
-import { useNavigate } from "react-router-dom";
-import { toast } from "sonner";
+// import { useNavigate } from "react-router-dom";
+// import { toast } from "sonner";
 
 const CommentPage = () => {
   const { token } = useToken();
-  const navigate = useNavigate();
+  //   const navigate = useNavigate();
 
-  async function handleDelete(commentId: number) {
-    try {
-      const result = await deleteComment(commentId);
-      toast(result.message);
-      localStorage.removeItem("token");
-      navigate("/");
-    } catch (error) {
-      toast((error as Error).message);
-    }
-  }
+  //   async function handleDelete(post_id: number) {
+  //     try {
+  //       const result = await deleteComment(post_id);
+  //       toast(result.message);
+  //       localStorage.removeItem("token");
+  //       navigate("/");
+  //     } catch (error) {
+  //       toast((error as Error).message);
+  //     }
+  //   }
 
   return (
     <div className="flex flex-col w-full px-8 py-4 overflow-auto">
@@ -45,7 +45,11 @@ const CommentPage = () => {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" forceMount>
                 <DropdownMenuItem>Edit Post</DropdownMenuItem>
-                <DropdownMenuItem>Delete Post</DropdownMenuItem>
+                <DropdownMenuItem
+                // onClick={() => handleDelete(post_id)}
+                >
+                  Delete Post
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           ) : null}

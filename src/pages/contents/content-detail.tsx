@@ -14,14 +14,14 @@ import { Posting } from "@/utils/apis/post/type";
 import { useToken } from "@/utils/contexts/token";
 import { Ellipsis } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import { toast } from "sonner";
 import AddComment from "../comments/add-comment";
 import CommentPage from "../comments/comment";
 
 const ContentDetail = () => {
-  const { token, user } = useToken();
-  const params = useParams();
+  const { token } = useToken();
+  // const params = useParams();
 
   const [data, setData] = useState<Posting[]>([]);
 
@@ -82,7 +82,9 @@ const ContentDetail = () => {
           {token ? <Separator /> : null}
           {token ? <AddComment /> : null}
           <Separator />
-          <CommentPage />
+          {data?.map((commentss) => (
+            <CommentPage key={commentss.user_id} />
+          ))}
         </Card>
         <RightBar />
       </div>

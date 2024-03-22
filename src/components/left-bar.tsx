@@ -6,7 +6,7 @@ import { toast } from "sonner";
 import { useToken } from "@/utils/contexts/token";
 
 const LeftBar = () => {
-  const { changeToken, token } = useToken();
+  const { changeToken } = useToken();
 
   function handleLogout() {
     changeToken();
