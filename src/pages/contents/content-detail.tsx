@@ -31,7 +31,7 @@ const ContentDetail = () => {
 
   async function fetchData() {
     try {
-      const result = await getPostDetails(1);
+      const result = await getPostDetails(2);
       setData(result.data);
     } catch (error) {
       toast((error as Error).message.toString());
