@@ -23,9 +23,9 @@ export const updateComment = async (
   }
 };
 
-export const deleteComment = async (commentId: number) => {
+export const deleteComment = async (post_id: number) => {
   try {
-    const response = await axiosWithConfig.delete(`/comment${commentId}`);
+    const response = await axiosWithConfig.delete(`/comment${post_id}`);
     return response.data as ApiResponse;
   } catch (error: any) {
     throw Error(error.response.data.message);

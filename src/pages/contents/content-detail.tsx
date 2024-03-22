@@ -20,7 +20,7 @@ import AddComment from "../comments/add-comment";
 import CommentPage from "../comments/comment";
 
 const ContentDetail = () => {
-  const { token, user } = useToken();
+  const { token } = useToken();
   const params = useParams();
 
   const [data, setData] = useState<Posting[]>([]);
@@ -31,7 +31,7 @@ const ContentDetail = () => {
 
   async function fetchData() {
     try {
-      const result = await getPostDetails(1);
+      const result = await getPostDetails(params.post_id!);
       setData(result.data);
     } catch (error) {
       toast((error as Error).message.toString());
@@ -82,7 +82,9 @@ const ContentDetail = () => {
           {token ? <Separator /> : null}
           {token ? <AddComment /> : null}
           <Separator />
-          <CommentPage />
+          {data?.map((commentss) => (
+            <CommentPage key={commentss.user_id} />
+          ))}
         </Card>
         <RightBar />
       </div>

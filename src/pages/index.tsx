@@ -7,9 +7,11 @@ import { useEffect, useState } from "react";
 import { Posting } from "@/utils/apis/post/type";
 import { getPosts } from "@/utils/apis/post/api";
 import { toast } from "sonner";
+import { useToken } from "@/utils/contexts/token";
 
 const Homepage = () => {
   const [data, setData] = useState<Posting[]>([]);
+  const { token } = useToken();
 
   useEffect(() => {
     fetchData();
@@ -28,8 +30,10 @@ const Homepage = () => {
     <Layout>
       <div className="flex">
         <div className="flex flex-col w-full px-8 py-4 space-y-2 bg-zinc-100 overflow-auto">
-          <SearchBar />
-          <PostContentBar profile_image={"https://github.com/shadcn.png"} />
+          {token ? <SearchBar /> : null}
+          {token ? (
+            <PostContentBar profile_image={"https://github.com/shadcn.png"} />
+          ) : null}
           <ContentCard
             user={"Mike Shinoda"}
             profile_image={"https://github.com/shadcn.png"}
