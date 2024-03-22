@@ -19,7 +19,7 @@ import { toast } from "sonner";
 import AddComment from "../comments/add-comment";
 import CommentPage from "../comments/comment";
 
-const ContentDetail = () => {
+const DetailContent = () => {
   const { token } = useToken();
   const params = useParams();
 
@@ -86,4 +86,4 @@ const ContentDetail = () => {
   );
 };
 
-export default ContentDetail;
+export default DetailContent;
