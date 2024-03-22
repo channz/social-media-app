@@ -14,14 +14,14 @@ import { Posting } from "@/utils/apis/post/type";
 import { useToken } from "@/utils/contexts/token";
 import { Ellipsis } from "lucide-react";
 import { useEffect, useState } from "react";
-// import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { toast } from "sonner";
 import AddComment from "../comments/add-comment";
 import CommentPage from "../comments/comment";
 
 const ContentDetail = () => {
   const { token } = useToken();
-  // const params = useParams();
+  const params = useParams();
 
   const [data, setData] = useState<Posting[]>([]);
 
@@ -31,7 +31,7 @@ const ContentDetail = () => {
 
   async function fetchData() {
     try {
-      const result = await getPostDetails(2);
+      const result = await getPostDetails(params.post_id!);
       setData(result.data);
     } catch (error) {
       toast((error as Error).message.toString());
