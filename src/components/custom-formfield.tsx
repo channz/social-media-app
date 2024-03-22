@@ -36,7 +36,6 @@ import { cn } from "@/lib/utils";
 
 interface Props<T extends FieldValues> {
   name: FieldPath<T>;
-  label: string;
   placeholder?: string;
   options?: any[];
   description?: string;
@@ -50,7 +49,7 @@ interface ChildrenProps<T extends FieldValues> extends Props<T> {
 export function CustomFormField<T extends FieldValues>(
   props: Readonly<ChildrenProps<T>>
 ) {
-  const { name, label, description, control, children } = props;
+  const { name, description, control, children } = props;
 
   return (
     <FormField
@@ -58,7 +57,6 @@ export function CustomFormField<T extends FieldValues>(
       name={name}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>{label}</FormLabel>
           <FormControl>{children(field)}</FormControl>
           {description && <FormDescription>{description}</FormDescription>}
           <FormMessage />
@@ -71,7 +69,7 @@ export function CustomFormField<T extends FieldValues>(
 export function CustomFormSelect<T extends FieldValues>(
   props: Readonly<Props<T>>
 ) {
-  const { name, label, placeholder, description, control, options } = props;
+  const { name, placeholder, description, control, options } = props;
 
   return (
     <FormField
@@ -79,7 +77,6 @@ export function CustomFormSelect<T extends FieldValues>(
       name={name}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>{label}</FormLabel>
           <Select onValueChange={field.onChange} defaultValue={field.value}>
             <FormControl>
               <SelectTrigger className="w-[180px]">
@@ -88,7 +85,6 @@ export function CustomFormSelect<T extends FieldValues>(
             </FormControl>
             <SelectContent>
               <SelectGroup>
-                <SelectLabel>{label}</SelectLabel>
                 {options?.map((option) => (
                   <SelectItem value={option} key={option}>
                     {option}
@@ -108,7 +104,7 @@ export function CustomFormSelect<T extends FieldValues>(
 export function CustomFormDatePicker<T extends FieldValues>(
   props: Readonly<Props<T>>
 ) {
-  const { name, label, placeholder, description, control } = props;
+  const { name, placeholder, description, control } = props;
 
   return (
     <FormField
@@ -116,7 +112,6 @@ export function CustomFormDatePicker<T extends FieldValues>(
       name={name}
       render={({ field }) => (
         <FormItem className="flex flex-col">
-          <FormLabel>{label}</FormLabel>
           <Popover>
             <PopoverTrigger asChild>
               <FormControl>

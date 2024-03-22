@@ -3,8 +3,27 @@ import Layout from "@/components/layout";
 import SearchBar from "./contents/search";
 import PostContentBar from "./contents/post-content";
 import RightBar from "@/components/right-bar";
+import { useEffect, useState } from "react";
+import { Posting } from "@/utils/apis/post/type";
+import { getPosts } from "@/utils/apis/post/api";
+import { toast } from "sonner";
 
 const Homepage = () => {
+  const [data, setData] = useState<Posting[]>([]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  async function fetchData() {
+    try {
+      const result = await getPosts();
+      setData(result.data);
+    } catch (error) {
+      toast((error as Error).message.toString());
+    }
+  }
+
   return (
     <Layout>
       <div className="flex">
@@ -12,7 +31,7 @@ const Homepage = () => {
           <SearchBar />
           <PostContentBar profile_image={"https://github.com/shadcn.png"} />
           <ContentCard
-            user={"John Doe"}
+            user={"Mike Shinoda"}
             profile_image={"https://github.com/shadcn.png"}
             cover_image={"/src/assets/image-post.jpg"}
             caption={
@@ -21,15 +40,17 @@ const Homepage = () => {
             id={1}
             comment={35}
           />
-          <ContentCard
-            user={"Mike Shinoda"}
-            profile_image={"https://github.com/shadcn.png"}
-            caption={
-              "The king, seeing how much happier his subjects were, realized the error of his ways and repealed the joke tax."
-            }
-            id={1}
-            comment={35}
-          />
+          {data?.map((postingan) => (
+            <ContentCard
+              key={postingan.user_id}
+              user={postingan.users.nama}
+              profile_image={postingan.users.picture!}
+              cover_image={postingan.picture}
+              caption={postingan.conten}
+              id={postingan.user_id}
+              comment={35}
+            />
+          ))}
         </div>
         <RightBar />
       </div>
