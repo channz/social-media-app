@@ -23,7 +23,7 @@ const ContentDetail = () => {
   const { token } = useToken();
   const params = useParams();
 
-  const [data, setData] = useState<Posting[]>([]);
+  const [data, setData] = useState<Posting>();
 
   useEffect(() => {
     fetchData();
@@ -50,7 +50,7 @@ const ContentDetail = () => {
                 </Avatar>
               </div>
               <div className="grow mx-4 my-auto">
-                <p className="font-semibold text-lg">{"John Doe"}</p>
+                <p className="font-semibold text-lg">{data?.users.nama}</p>
               </div>
               <div className="flex-none my-auto">
                 {token ? (
@@ -67,24 +67,18 @@ const ContentDetail = () => {
               </div>
             </div>
             <div className="flex flex-col ms-16 me-2 space-y-4">
-              <p className="text-lg">
-                {
-                  "The king, seeing how much happier his subjects were, realized the error of his ways and repealed the joke tax."
-                }
-              </p>
+              <p className="text-lg">{data?.conten}</p>
               <img
                 src={"/src/assets/image-post.jpg"}
                 className="aspect-[3/4] w-auto h-96 object-cover rounded-lg"
-                alt=""
+                alt={data?.picture}
               />
             </div>
           </CardContent>
           {token ? <Separator /> : null}
           {token ? <AddComment /> : null}
           <Separator />
-          {data?.map((commentss) => (
-            <CommentPage key={commentss.user_id} />
-          ))}
+          <CommentPage />
         </Card>
         <RightBar />
       </div>
