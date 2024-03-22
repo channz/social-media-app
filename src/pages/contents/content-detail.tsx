@@ -21,7 +21,7 @@ import CommentPage from "../comments/comment";
 
 const ContentDetail = () => {
   const { token } = useToken();
-  // const params = useParams();
+  const params = useParams();
 
   const [data, setData] = useState<Posting[]>([]);
 
@@ -31,7 +31,7 @@ const ContentDetail = () => {
 
   async function fetchData() {
     try {
-      const result = await getPostDetails(1);
+      const result = await getPostDetails(params.post_id!);
       setData(result.data);
     } catch (error) {
       toast((error as Error).message.toString());
