@@ -23,7 +23,7 @@ export const getPosts = async () => {
 export const getPostDetails = async (post_id: string) => {
   try {
     const response = await axiosWithConfig.get(`/posts/${post_id}`);
-    return response.data as ApiDataResponse<Posting[]>;
+    return response.data as ApiDataResponse<Posting>;
   } catch (error: any) {
     throw Error(error.response.data.message);
   }
